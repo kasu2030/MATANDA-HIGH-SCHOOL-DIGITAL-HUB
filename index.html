@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Matanda High School Digital Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F2ECDC;
+    --paper:#FAF7EF;
+    --maroon:#7A2331;
+    --maroon-dark:#571620;
+    --ochre:#C17A3B;
+    --green:#33513F;
+    --ink:#2B241C;
+    --ink-soft:#5B5344;
+    --gold:#A5822F;
+    --line: rgba(43,36,28,0.18);
+    --radius: 3px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Karla', sans-serif;
+    font-size:17px;
+    line-height:1.55;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--maroon-dark);
+    margin:0 0 .4em 0;
+    line-height:1.15;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    background:var(--maroon-dark);
+    color:var(--cream);
+    font-size:13px;
+    letter-spacing:.02em;
+  }
+  .topbar .wrap{display:flex;justify-content:space-between;padding:6px 28px;flex-wrap:wrap;gap:6px;}
+  .topbar a{color:var(--cream);text-decoration:none;opacity:.9;}
+  .topbar a:hover{opacity:1;text-decoration:underline;}
+
+  header.site-header{
+    background:var(--maroon);
+    color:var(--paper);
+    position:sticky;top:0;z-index:40;
+    border-bottom:3px solid var(--ochre);
+  }
+  .nav-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 28px;max-width:1080px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--paper);}
+  .crest{
+    width:42px;height:42px;border-radius:50%;
+    background:var(--ochre);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:700;color:var(--maroon-dark);
+    font-size:18px;flex:none;
+    border:2px solid var(--cream);
+  }
+  .brand-text .name{font-family:'Fraunces',serif;font-weight:600;font-size:19px;line-height:1.1;}
+  .brand-text .sub{font-size:12px;opacity:.85;letter-spacing:.03em;}
+  nav.pillar-nav{display:flex;gap:22px;flex-wrap:wrap;}
+  nav.pillar-nav a{
+    text-decoration:none;color:var(--paper);font-size:14.5px;font-weight:600;
+    padding:6px 2px;border-bottom:2px solid transparent;
+  }
+  nav.pillar-nav a:hover{border-bottom-color:var(--ochre);}
+  .nav-toggle{display:none;background:none;border:1px solid var(--paper);color:var(--paper);border-radius:4px;padding:6px 10px;font-size:20px;line-height:1;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:
+      linear-gradient(180deg, rgba(122,35,49,0.0), rgba(122,35,49,0.0)),
+      repeating-linear-gradient(135deg, rgba(43,36,28,0.035) 0 2px, transparent 2px 26px),
+      var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .hero .wrap{padding:64px 28px 52px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;}
+  .hero .eyebrow{color:var(--ochre);font-weight:700;font-size:14px;margin-bottom:10px;letter-spacing:.01em;}
+  .hero h1{font-size:clamp(30px,4.2vw,46px);max-width:11ch;}
+  .hero p.lede{color:var(--ink-soft);font-size:18px;max-width:46ch;margin:14px 0 26px;}
+  .hero .ctas{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:12px 22px;border-radius:var(--radius);
+    text-decoration:none;font-weight:700;font-size:14.5px;border:2px solid transparent;
+  }
+  .btn-primary{background:var(--maroon);color:var(--paper);}
+  .btn-primary:hover{background:var(--maroon-dark);}
+  .btn-outline{border-color:var(--maroon);color:var(--maroon);}
+  .btn-outline:hover{background:var(--maroon);color:var(--paper);}
+
+  .hero-panel{
+    background:var(--maroon-dark);color:var(--paper);
+    padding:26px 26px 22px;border-radius:6px;
+    box-shadow:6px 6px 0 var(--ochre);
+  }
+  .hero-panel h3{color:var(--paper);font-size:16px;margin-bottom:12px;text-transform:none;}
+  .hero-panel ol{margin:0;padding-left:20px;font-size:14.5px;}
+  .hero-panel li{margin-bottom:8px;color:#EFE6D2;}
+  .hero-panel li b{color:#fff;}
+
+  /* ---------- problem strip ---------- */
+  .problem{background:var(--green);color:var(--paper);padding:26px 0;}
+  .problem .wrap{display:flex;gap:20px;align-items:flex-start;}
+  .problem p{margin:0;font-size:15.5px;color:#E7EEE9;}
+  .problem strong{color:#fff;}
+
+  /* ---------- section shell ---------- */
+  section.pillar{padding:64px 0;border-bottom:1px solid var(--line);}
+  section.pillar:nth-of-type(even){background:var(--paper);}
+  .pillar-head{display:flex;gap:18px;align-items:flex-start;margin-bottom:30px;}
+  .pillar-tag{
+    font-family:'Fraunces',serif;font-weight:700;font-size:15px;color:var(--ochre);
+    border:2px solid var(--ochre);border-radius:50%;
+    width:46px;height:46px;flex:none;display:flex;align-items:center;justify-content:center;
+  }
+  .pillar-head h2{font-size:28px;margin-bottom:4px;}
+  .pillar-head p{margin:0;color:var(--ink-soft);max-width:60ch;}
+
+  .grid{display:grid;gap:22px;}
+  .grid-3{grid-template-columns:repeat(3,1fr);}
+  .grid-2{grid-template-columns:repeat(2,1fr);}
+
+  .card{
+    background:var(--cream);border:1px solid var(--line);border-radius:5px;
+    padding:20px 20px 18px;
+  }
+  section.pillar:nth-of-type(even) .card{background:var(--paper);border-color:var(--line);}
+  .card h4{font-size:16.5px;margin-bottom:6px;}
+  .card .meta{font-size:12.5px;color:var(--ochre);font-weight:700;margin-bottom:8px;}
+  .card p{margin:0 0 12px;font-size:14.5px;color:var(--ink-soft);}
+  .card a.link{font-size:13.5px;font-weight:700;color:var(--maroon);text-decoration:none;}
+  .card a.link:hover{text-decoration:underline;}
+
+  .subject-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 24px;}
+  .subject-list li{
+    display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dotted var(--line);
+    font-size:15px;
+  }
+  .subject-list li span.tag{font-size:12px;color:var(--ink-soft);}
+
+  .notice{
+    border-left:4px solid var(--ochre);background:var(--paper);padding:14px 18px;border-radius:0 4px 4px 0;
+    margin-bottom:14px;
+  }
+  section.pillar:nth-of-type(even) .notice{background:var(--cream);}
+  .notice .date{font-size:12px;color:var(--ochre);font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
+  .notice h4{margin:4px 0 4px;font-size:16px;}
+  .notice p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+
+  form.feedback{display:grid;gap:14px;max-width:520px;}
+  form.feedback label{font-size:13.5px;font-weight:700;color:var(--ink);display:block;margin-bottom:5px;}
+  form.feedback input, form.feedback select, form.feedback textarea{
+    width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:4px;
+    font-family:inherit;font-size:14.5px;background:var(--paper);color:var(--ink);
+  }
+  form.feedback textarea{min-height:96px;resize:vertical;}
+  form.feedback button{
+    justify-self:start;background:var(--maroon);color:var(--paper);border:none;
+    padding:12px 24px;border-radius:4px;font-weight:700;cursor:pointer;font-size:14.5px;
+  }
+  form.feedback button:hover{background:var(--maroon-dark);}
+  .form-note{font-size:13px;color:var(--ink-soft);margin-top:10px;}
+  #feedback-success{display:none;background:var(--green);color:#fff;padding:12px 16px;border-radius:4px;font-size:14px;margin-top:10px;}
+
+  .industry-profile{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--line);border-radius:5px;padding:18px;background:var(--cream);}
+  section.pillar:nth-of-type(even) .industry-profile{background:var(--paper);}
+  .industry-profile .avatar{
+    width:52px;height:52px;border-radius:50%;background:var(--gold);flex:none;
+    display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Fraunces',serif;font-weight:700;
+  }
+  .industry-profile h4{margin-bottom:2px;font-size:16px;}
+  .industry-profile .role{font-size:12.5px;color:var(--ochre);font-weight:700;margin-bottom:8px;}
+  .industry-profile p{margin:0;font-size:14px;color:var(--ink-soft);}
+
+  .path-steps{display:flex;flex-wrap:wrap;gap:0;margin-top:8px;}
+  .path-steps span{
+    background:var(--maroon);color:var(--paper);padding:8px 16px;border-radius:20px;
+    font-size:13px;font-weight:700;margin:4px 8px 4px 0;
+  }
+
+  footer{background:var(--maroon-dark);color:#E7DFCB;padding:44px 0 26px;}
+  footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px;}
+  footer h4{color:#fff;font-family:'Fraunces',serif;font-size:16px;margin-bottom:10px;}
+  footer p, footer li{font-size:13.5px;color:#D9CFB4;}
+  footer ul{list-style:none;margin:0;padding:0;}
+  footer li{margin-bottom:7px;}
+  footer a{color:#D9CFB4;text-decoration:none;}
+  footer a:hover{text-decoration:underline;color:#fff;}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.14);margin-top:30px;padding-top:16px;font-size:12.5px;color:#C9BE9F;}
+
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .grid-3, .grid-2{grid-template-columns:1fr;}
+    .subject-list{grid-template-columns:1fr;}
+    nav.pillar-nav{
+      display:none;position:absolute;top:100%;left:0;right:0;background:var(--maroon);
+      flex-direction:column;padding:14px 28px;border-bottom:3px solid var(--ochre);
+    }
+    nav.pillar-nav.open{display:flex;}
+    .nav-toggle{display:block;}
+    footer .wrap{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+  :focus-visible{outline:3px solid var(--gold);outline-offset:2px;}
+
+  /* ---------- planning / behind-the-scenes section ---------- */
+  .plan-sub{font-size:14px;font-weight:700;color:var(--maroon);text-transform:none;margin:0 0 14px;}
+  .sitemap-tree{
+    background:var(--cream);border:1px solid var(--line);border-radius:5px;
+    padding:18px 22px;font-family:'Courier New',monospace;font-size:13.5px;line-height:1.9;
+    overflow-x:auto;color:var(--ink);
+  }
+  .sitemap-tree .root{color:var(--maroon-dark);font-weight:700;}
+  .swatch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .swatch{border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--paper);}
+  .swatch .chip{height:46px;}
+  .swatch .info{padding:10px 14px;}
+  .swatch .info .name{font-weight:700;font-size:14px;}
+  .swatch .info .hex{font-size:12px;color:var(--ink-soft);}
+  .swatch .info .use{font-size:12.5px;color:var(--ink-soft);font-style:italic;margin-top:3px;}
+  .type-table{width:100%;border-collapse:collapse;font-size:14px;}
+  .type-table th{background:var(--maroon);color:var(--paper);text-align:left;padding:10px 12px;font-size:13px;}
+  .type-table td{padding:10px 12px;border-bottom:1px solid var(--line);}
+  .wireframe-shot{border:1px solid var(--line);border-radius:5px;width:100%;display:block;}
+  .wireframe-cap{font-size:12.5px;color:var(--ink-soft);font-style:italic;margin-top:8px;}
+  .host-strip{display:flex;flex-wrap:wrap;gap:0;align-items:center;margin-top:6px;}
+  .host-strip .step{
+    background:var(--ochre);color:#fff;padding:10px 16px;border-radius:4px;font-size:13px;font-weight:700;
+    margin:4px 10px 4px 0;
+  }
+  .host-strip .arrow{color:var(--ink-soft);margin-right:10px;font-weight:700;}
+  details.plan-toggle{border:1px solid var(--line);border-radius:5px;background:var(--cream);margin-bottom:18px;}
+  details.plan-toggle summary{
+    cursor:pointer;padding:16px 20px;font-weight:700;font-size:15.5px;color:var(--maroon-dark);
+    list-style:none;display:flex;justify-content:space-between;align-items:center;
+  }
+  details.plan-toggle summary::-webkit-details-marker{display:none;}
+  details.plan-toggle summary:after{content:"+";font-size:20px;color:var(--ochre);}
+  details.plan-toggle[open] summary:after{content:"\2212";}
+  details.plan-toggle .inner{padding:4px 20px 22px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>Matanda High School &middot; Marange, Mutare &middot; P. Bag P7071</span>
+    <a href="#community">Report an issue / Leave feedback</a>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="nav-row">
+    <a href="#top" class="brand">
+      <span class="crest">MHS</span>
+      <span class="brand-text">
+        <div class="name">Matanda High School</div>
+        <div class="sub">Digital Hub — Innovation &amp; Community Portal</div>
+      </span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    <nav class="pillar-nav" id="pillarNav">
+      <a href="#teaching">Teaching</a>
+      <a href="#research">Research</a>
+      <a href="#community">Community</a>
+      <a href="#innovation">Innovation</a>
+      <a href="#industry">Industrialisation</a>
+      <a href="#planning">How we built this</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Education 5.0 in action</div>
+      <h1>One home for Matanda's teaching, research and local innovation.</h1>
+      <p class="lede">A single place where learners, teachers and the Matanda community share notes, research, notices and the pathways connecting our school to local industry — built so nothing valuable gets lost between a classroom and a village meeting.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#teaching">Browse E-Learning Resources</a>
+        <a class="btn btn-outline" href="#community">Read Community Notices</a>
+      </div>
+    </div>
+    <div class="hero-panel">
+      <h3>The five pillars this hub is built around</h3>
+      <ol>
+        <li><b>Teaching</b> — subject notes, past papers, tutorials</li>
+        <li><b>Research</b> — student research from our own community</li>
+        <li><b>Community Service</b> — notices and a direct feedback line</li>
+        <li><b>Innovation</b> — a gallery of learner-built projects</li>
+        <li><b>Industrialisation</b> — local industry and career pathways</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<div class="problem">
+  <div class="wrap">
+    <p><strong>Why this hub exists:</strong> consultation with students, staff and community members showed that Matanda High School and the surrounding community had no centralised platform for sharing information — so school programmes, career guidance and local innovation news often didn't reach the students and parents who needed them.</p>
+  </div>
+</div>
+
+<!-- ================= TEACHING ================= -->
+<section class="pillar" id="teaching">
+  <div class="wrap">
+    <div class="pillar-head">
+      <span class="pillar-tag">I</span>
+      <div>
+        <h2>Teaching — E-Learning Resources</h2>
+        <p>Subject notes, past exam papers and tutorials made by our own teachers and students, organised by subject.</p>
+      </div>
+    </div>
+
+    <ul class="subject-list">
+      <li>Mathematics <span class="tag">Notes · Past papers · 4 tutorials</span></li>
+      <li>Combined Science <span class="tag">Notes · Past papers · 3 tutorials</span></li>
+      <li>English Language <span class="tag">Notes · Past papers · 2 tutorials</span></li>
+      <li>Computer Science <span class="tag">Notes · Past papers · 5 tutorials</span></li>
+      <li>Geography <span class="tag">Notes · Past papers</span></li>
+      <li>Agriculture <span class="tag">Notes · Field guides</span></li>
+      <li>History <span class="tag">Notes · Past papers</span></li>
+      <li>Family &amp; Religious Studies <span class="tag">Notes</span></li>
+    </ul>
+
+    <div class="grid grid-3" style="margin-top:28px;">
+      <div class="card">
+        <div class="meta">TUTORIAL</div>
+        <h4>Solving simultaneous equations</h4>
+        <p>Student-made walkthrough with three worked ZIMSEC-style examples.</p>
+        <a class="link" href="#">Open resource →</a>
+      </div>
+      <div class="card">
+        <div class="meta">PAST PAPER</div>
+        <h4>Combined Science — 2025 Specimen</h4>
+        <p>Paper 1 and Paper 2 with the marking guide included.</p>
+        <a class="link" href="#">Open resource →</a>
+      </div>
+      <div class="card">
+        <div class="meta">TUTORIAL</div>
+        <h4>Intro to HTML for Computer Science</h4>
+        <p>Recorded by a 4A learner as part of this very project.</p>
+        <a class="link" href="#">Open resource →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESEARCH ================= -->
+<section class="pillar" id="research">
+  <div class="wrap">
+    <div class="pillar-head">
+      <span class="pillar-tag">II</span>
+      <div>
+        <h2>Research — Student Research Corner</h2>
+        <p>Small, local research projects carried out by our learners — real questions about our own soil, water and workplaces.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="meta">AGRICULTURE</div>
+        <h4>Soil testing across Matanda fields</h4>
+        <p>Comparing pH and nutrient levels across three homestead plots to guide maize planting decisions.</p>
+        <a class="link" href="#">Read the project →</a>
+      </div>
+      <div class="card">
+        <div class="meta">ENVIRONMENTAL SCIENCE</div>
+        <h4>Water quality of the local river</h4>
+        <p>Basic clarity and contamination testing at three points along the community's main water source.</p>
+        <a class="link" href="#">Read the project →</a>
+      </div>
+      <div class="card">
+        <div class="meta">SAFETY STUDIES</div>
+        <h4>Mining safety awareness in Marange</h4>
+        <p>A survey of safety practices reported by small-scale miners, with recommendations for learners considering the trade.</p>
+        <a class="link" href="#">Read the project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMMUNITY ================= -->
+<section class="pillar" id="community">
+  <div class="wrap">
+    <div class="pillar-head">
+      <span class="pillar-tag">III</span>
+      <div>
+        <h2>Community Service — Notices &amp; Feedback</h2>
+        <p>School events and announcements for parents and villagers, plus a direct line back to the school.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-2">
+      <div>
+        <div class="notice">
+          <div class="date">24 September 2026</div>
+          <h4>Prize-Giving Day</h4>
+          <p>All parents and guardians are invited to the school hall from 9am to celebrate this year's top performers.</p>
+        </div>
+        <div class="notice">
+          <div class="date">5 November 2026</div>
+          <h4>Form 4 career guidance session</h4>
+          <p>A visiting careers officer will speak to Form 4 learners about post-school pathways, including local technical colleges.</p>
+        </div>
+        <div class="notice">
+          <div class="date">22 October 2026</div>
+          <h4>Community clean-up at Matanda borehole</h4>
+          <p>Volunteers from the school and surrounding villages are asked to gather at 7am on Saturday.</p>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-size:17px;margin-bottom:10px;">Send feedback to the school</h3>
+        <form class="feedback" id="feedbackForm">
+          <div>
+            <label for="fname">Your name</label>
+            <input type="text" id="fname" required />
+          </div>
+          <div>
+            <label for="frole">I am a</label>
+            <select id="frole">
+              <option>Parent / Guardian</option>
+              <option>Community member</option>
+              <option>Student</option>
+              <option>Teacher / Staff</option>
+            </select>
+          </div>
+          <div>
+            <label for="fmsg">Your message</label>
+            <textarea id="fmsg" required placeholder="Share a question, concern or suggestion for the school..."></textarea>
+          </div>
+          <button type="submit">Send feedback</button>
+        </form>
+        <div id="feedback-success">Thank you — your feedback has been recorded and will reach the school office.</div>
+        <p class="form-note">This form is a working demo. Connect it to the school office email or a form service (e.g. Google Forms) before going live.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INNOVATION ================= -->
+<section class="pillar" id="innovation">
+  <div class="wrap">
+    <div class="pillar-head">
+      <span class="pillar-tag">IV</span>
+      <div>
+        <h2>Innovation — Student Innovations Gallery</h2>
+        <p>Science fair projects and problem-solving ideas built by Matanda learners, plus an open challenge for new ones.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="card">
+        <div class="meta">SCIENCE FAIR 2026</div>
+        <h4>Solar-powered phone charging station</h4>
+        <p>Built from a repurposed panel to give learners a place to charge phones for research and study during load-shedding.</p>
+        <a class="link" href="#">View project →</a>
+      </div>
+      <div class="card">
+        <div class="meta">SCIENCE FAIR 2026</div>
+        <h4>Low-cost water filter from local sand and gravel</h4>
+        <p>A layered filter design tested against the river-water samples from the Research Corner.</p>
+        <a class="link" href="#">View project →</a>
+      </div>
+      <div class="card" style="border:2px dashed var(--ochre);">
+        <div class="meta">OPEN CHALLENGE</div>
+        <h4>Innovation Challenge: submit your idea</h4>
+        <p>Have a solution to a problem in Matanda or Marange? Submit a one-page proposal for a chance to present it at next term's science fair.</p>
+        <a class="link" href="#community">Submit via feedback form →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INDUSTRY ================= -->
+<section class="pillar" id="industry">
+  <div class="wrap">
+    <div class="pillar-head">
+      <span class="pillar-tag">V</span>
+      <div>
+        <h2>Industrialisation — Local Industry Link</h2>
+        <p>Connecting learners to diamond value-addition, local artisans and miners, and the technical &amp; vocational routes into those careers.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-2" style="margin-bottom:24px;">
+      <div class="industry-profile">
+        <div class="avatar">T</div>
+        <div>
+          <h4>Tendai — Gem-cutting apprentice</h4>
+          <div class="role">Marange diamond value-addition</div>
+          <p>Trained locally after completing a technical college course; now teaches basic stone-handling safety to new apprentices.</p>
+        </div>
+      </div>
+      <div class="industry-profile">
+        <div class="avatar">S</div>
+        <div>
+          <h4>Sekai — Furniture artisan</h4>
+          <div class="role">Local woodwork &amp; welding</div>
+          <p>Runs a small workshop in Matanda and regularly hosts learners for hands-on career-guidance visits.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4 style="margin-bottom:10px;">Technical &amp; vocational pathways from Matanda High</h4>
+      <div class="path-steps">
+        <span>O-Level</span>
+        <span>Vocational Training Centre</span>
+        <span>Apprenticeship</span>
+        <span>Trade Certificate</span>
+        <span>Local Employment</span>
+      </div>
+      <p style="margin-top:14px;">Learners interested in gemology, welding, carpentry or agro-processing can speak to the careers office for referrals to nearby technical colleges and registered local employers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PLANNING / BEHIND THE SCENES ================= -->
+<section class="pillar" id="planning">
+  <div class="wrap">
+    <div class="pillar-head">
+      <span class="pillar-tag">+</span>
+      <div>
+        
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>Matanda High School Digital Hub</h4>
+      <p>Built as a Computer Science Work Integrated Learning community engagement project, structured around the five pillars of Education 5.0: Teaching, Research, Community Service, Innovation and Industrialisation.</p>
+    </div>
+    <div>
+      <h4>Quick links</h4>
+      <ul>
+        <li><a href="#teaching">E-Learning Resources</a></li>
+        <li><a href="#research">Student Research Corner</a></li>
+        <li><a href="#community">Notices &amp; Feedback</a></li>
+        <li><a href="#innovation">Innovations Gallery</a></li>
+        <li><a href="#industry">Local Industry Link</a></li>
+        <li><a href="#planning">How we built this</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li>Matanda High School, P. Bag P7071, Mutare</li>
+        <li>Marange, Zimbabwe</li>
+        <li>WIL Project Lead: Patience Kasunzuma</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    &copy; 2026 Matanda High School. Digital Hub prototype developed for the school's Education 5.0 community engagement project.
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const pillarNav = document.getElementById('pillarNav');
+  navToggle.addEventListener('click', () => {
+    const open = pillarNav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  pillarNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    pillarNav.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  const form = document.getElementById('feedbackForm');
+  const success = document.getElementById('feedback-success');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    success.style.display = 'block';
+    form.reset();
+    success.scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+</script>
+
+</body>
+</html>
